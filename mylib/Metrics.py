@@ -20,3 +20,11 @@ def MAPE(y_test, y_predict):
 
 def R_2(y_test, y_predict):
     return 1 - (MSE(y_test, y_predict) / (np.sum((np.array(y_test) - np.array(y_test).mean()) ** 2) / len(y_test)))
+
+
+def all_metrics(y_test, y_predict):
+    print(f'MAE: {MAE(y_test, y_predict)}')
+    print(f'MSE: {MSE(y_test, y_predict)}')
+    print(f'RMSE: {RMSE(y_test, y_predict)}')
+    print(f'MAPE: {MAPE(y_test, y_predict)}')
+    print(f'R^2: {R_2(y_test, y_predict)}')
