@@ -5,7 +5,10 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/Thumbs.db": true
+        "**/Thumbs.db": true,
+        "mylib/__pycache__": true
     },
-    "hide-files.files": []
+    "hide-files.files": [
+        "mylib/__pycache__"
+    ]
 }
