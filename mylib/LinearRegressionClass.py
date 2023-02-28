@@ -29,20 +29,14 @@ class MyLinearRegression_L2:
 
     def predict(self, X_test):
         return np.dot(np.c_[np.ones(X_test.shape[0]), X_test], self.coef)
-        
-    
-    def loss_function(self, w):
-        return (np.sum((self.y_train - np.dot(self.X_train, w)) ** 2) + self.alpha * np.sum(w ** 2)) / self.l
     
 
     def optimizator(self, k=0.00001):
         w0 = self.coef
         t = 1
         w1 = w0 - (k / t) * self.nabla(w0)
-        print(f'{t}) {round(self.loss_function(w0), 1)}')
         while t <= 100:
             t += 1
-            print(f'{t}) {round(self.loss_function(w1), 1)}')
             w0, w1 = w1, w1 - (k / t) * self.nabla(w1)
         self.coef = w1
         # self.coef = minimize(self.loss_function, self.coef, method='SLSQP').x
@@ -56,8 +50,3 @@ class MyLinearRegression_L2:
                 a += ((self.y_train[j] - np.dot(w, self.X_train[j]))* self.X_train[j][i])
             grad.append((-2 / self.l) * (a - self.alpha * w[i]))
         return np.array(grad)
-
-
-
-
-

@@ -6,9 +6,13 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "mylib/__pycache__": true
+        "mylib/__pycache__": true,
+        "venv": true,
+        ".vscode": true
     },
     "hide-files.files": [
-        "mylib/__pycache__"
+        "mylib/__pycache__",
+        "venv",
+        ".vscode"
     ]
 }
