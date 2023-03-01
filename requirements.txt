@@ -2,7 +2,6 @@ notebook
 scikit-learn
 pandas
 matplotlib
-matplotlib
 tensorflow
 numpy
 imbalanced-learn
