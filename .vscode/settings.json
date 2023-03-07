@@ -8,11 +8,13 @@
         "**/Thumbs.db": true,
         "mylib/__pycache__": true,
         "venv": true,
-        ".vscode": true
+        ".vscode": true,
+        "mylib/classification/__pycache__": true
     },
     "hide-files.files": [
         "mylib/__pycache__",
         "venv",
-        ".vscode"
+        ".vscode",
+        "mylib/classification/__pycache__"
     ]
 }
