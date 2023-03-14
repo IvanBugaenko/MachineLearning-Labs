@@ -16,6 +16,8 @@ class MyKNN:
         self.X_train = np.array(X_train)
         self.y_train = np.array(y_train)
 
+        return self
+
 
     def predict(self, X_test: Any) -> np.array:
 

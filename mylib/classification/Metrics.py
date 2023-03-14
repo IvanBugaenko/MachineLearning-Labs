@@ -43,13 +43,13 @@ class ClassificationMetrics:
     def accuracy(self) -> dict:
         M = self.confusion_matrix()
 
-        acc = {}
+        acc = 0
 
         for c in self.classes:
             conf_matrix = M[c]
-            acc.update({c: round((conf_matrix[0] + conf_matrix[3]) / np.sum(conf_matrix), 2)})
+            acc += conf_matrix[0]
         
-        return acc    
+        return acc / self.y_true.shape[0]
 
 
     def precision(self) -> dict:
