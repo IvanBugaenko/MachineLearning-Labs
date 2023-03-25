@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
 
+# from __future__ import braces
+import this
+
 # a = np.array([
 #     [1, 0, 1, 1],
 #     [7, 2, 3, 4],
@@ -38,8 +41,8 @@ import pandas as pd
 
 
 
-A = pd.DataFrame(data=[1, 2, 1, 1, 2, 1, 2, 2, 1])
-print(A)
-print()
-B = A.groupby([0])[0].count()
-print(B.loc[1])
+# A = pd.DataFrame(data=[1, 2, 1, 1, 2, 1, 2, 2, 1])
+# print(A)
+# print()
+# B = A.groupby([0])[0].count()
+# print(B.loc[1])

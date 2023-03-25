@@ -40,7 +40,7 @@ class ClassificationMetrics:
         return table
 
 
-    def accuracy(self) -> dict:
+    def accuracy(self) -> float:
         M = self.confusion_matrix()
 
         acc = 0
@@ -49,7 +49,7 @@ class ClassificationMetrics:
             conf_matrix = M[c]
             acc += conf_matrix[0]
         
-        return acc / self.y_true.shape[0]
+        return round(acc / self.y_true.shape[0], 2)
 
 
     def precision(self) -> dict:
@@ -89,15 +89,14 @@ class ClassificationMetrics:
 
 
     def report(self) -> pd.DataFrame:
-        table = pd.DataFrame(columns=['class_name', 'precision', 'recall', 'f1-score', 'accuracy'])
+        table = pd.DataFrame(columns=['class_name', 'precision', 'recall', 'f1-score'])
         for c in self.classes:
             info = {
                 'class_name': str(c),
                 'precision': f'{self.precision()[c]}',
                 'recall': f'{self.recall()[c]}',
                 'f1-score': f'{self.f1_score()[c]}',
-                'accuracy': f'{self.accuracy()[c]}'
             }
-            table.loc[len(table)] = [str(c), f'{self.precision()[c]}', f'{self.recall()[c]}', f'{self.f1_score()[c]}', f'{self.accuracy()[c]}']
+            table.loc[len(table)] = [str(c), f'{self.precision()[c]}', f'{self.recall()[c]}', f'{self.f1_score()[c]}']
 
         return table
