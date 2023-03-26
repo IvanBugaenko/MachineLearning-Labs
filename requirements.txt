@@ -5,3 +5,5 @@ matplotlib
 tensorflow
 numpy
 imbalanced-learn
+xgboost
+catboost
