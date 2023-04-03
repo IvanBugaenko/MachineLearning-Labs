@@ -9,12 +9,14 @@
         "mylib/__pycache__": true,
         "venv": true,
         ".vscode": true,
-        "mylib/classification/__pycache__": true
+        "mylib/classification/__pycache__": true,
+        "mylib/tree/__pycache__": true
     },
     "hide-files.files": [
         "mylib/__pycache__",
         "venv",
         ".vscode",
-        "mylib/classification/__pycache__"
+        "mylib/classification/__pycache__",
+        "mylib/tree/__pycache__"
     ]
 }
