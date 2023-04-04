@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def classes_prior_probability(chi: np.array) -> dict:
 
     info = np.unique(chi[:, -1], return_counts=True)

@@ -18,5 +18,8 @@
         ".vscode",
         "mylib/classification/__pycache__",
         "mylib/tree/__pycache__"
+    ],
+    "cSpell.words": [
+        "mylib"
     ]
 }

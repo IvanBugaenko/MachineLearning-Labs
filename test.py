@@ -27,5 +27,17 @@ a = np.array([[1, 2, 3, 1],
 
 # print(mode(a[:,-1]).mode[0])
 
-print(classes_prior_probability(a))
+# print(classes_prior_probability(a))
 
+d = {
+    1: 0.3,
+    3: 0.1,
+    2: 0.4,
+    4: 0.2
+}
+
+# print(sorted(d, key=lambda x: d.values()))
+# print(sorted(list(d.items()), key=lambda x: x[-1])[-1][0])
+
+b = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+print(np.mean(b))
