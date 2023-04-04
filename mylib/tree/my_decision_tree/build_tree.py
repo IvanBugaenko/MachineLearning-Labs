@@ -1,7 +1,7 @@
 import numpy as np
-from mylib.tree.node import Node
-from mylib.tree.dependensies import functions
-from mylib.tree.best_split import best_split
+from mylib.tree.my_decision_tree.node import Node
+from mylib.tree.my_decision_tree.dependensies import functions
+from mylib.tree.my_decision_tree.best_split import best_split
 
 
 def build_tree(tree_type: str, chi: np.array, max_depth: int, depth=0) -> Node:

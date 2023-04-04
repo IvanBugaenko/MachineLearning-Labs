@@ -1,8 +1,8 @@
 import numpy as np
-from mylib.tree.node import Node
-from mylib.tree.build_tree import build_tree
-from mylib.tree.popusk import popusk
-from mylib.tree.dependensies import functions
+from mylib.tree.my_decision_tree.node import Node
+from mylib.tree.my_decision_tree.build_tree import build_tree
+from mylib.tree.my_decision_tree.popusk import popusk
+from mylib.tree.my_decision_tree.dependensies import functions
 
 
 class MyDecisionTree:
@@ -27,4 +27,4 @@ class MyDecisionTree:
         for obj in X:
             answer.append(self.__tree_answer(obj))
 
-        return answer
+        return np.array(answer)

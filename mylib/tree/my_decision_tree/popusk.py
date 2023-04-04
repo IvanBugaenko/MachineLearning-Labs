@@ -1,5 +1,5 @@
 import numpy as np
-from mylib.tree.node import Node
+from mylib.tree.my_decision_tree.node import Node
 
 
 def popusk(node: Node, x: np.array) -> object:

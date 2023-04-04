@@ -1,5 +1,5 @@
 import numpy as np
-from mylib.tree.node import Node
+from mylib.tree.my_decision_tree.node import Node
 from scipy.stats import mode
 
 
@@ -43,6 +43,8 @@ def split_chi(chi: np.array, j: int, predicate_value: float):
     return chi[ chi[:, j] < predicate_value], chi[ chi[:, j] >= predicate_value]
 
 # print(split_chi(a, 2, 7))
-print(type(int(a[0][0])))
+# print(type(int(a[0][0])))
+
+print(a[1])
 
 

@@ -1,5 +1,5 @@
 import numpy as np
-from mylib.tree.classes_prior_probability import classes_prior_probability
+from mylib.tree.my_decision_tree.classes_prior_probability import classes_prior_probability
 
 
 def gini(chi: np.array) -> float:

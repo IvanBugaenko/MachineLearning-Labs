@@ -1,6 +1,6 @@
 import numpy as np
-from mylib.tree.split_chi import split_chi
-from mylib.tree.dependensies import functions
+from mylib.tree.my_decision_tree.split_chi import split_chi
+from mylib.tree.my_decision_tree.dependensies import functions
 
 
 def best_split(chi: np.array, tree_type: str) -> tuple:

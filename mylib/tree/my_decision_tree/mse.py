@@ -1,5 +1,5 @@
 import numpy as np
-from mylib.tree.mean_regression import mean_regression
+from mylib.tree.my_decision_tree.mean_regression import mean_regression
 
 
 def mean_squared_error(chi: np.array) -> float:
