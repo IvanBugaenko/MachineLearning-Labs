@@ -39,5 +39,10 @@ d = {
 # print(sorted(d, key=lambda x: d.values()))
 # print(sorted(list(d.items()), key=lambda x: x[-1])[-1][0])
 
-b = np.array([1, 2, 3, 4, 5, 6, 7, 8])
-print(np.mean(b))
+def split_chi(chi: np.array, j: int, predicate_value: float):
+    return chi[ chi[:, j] < predicate_value], chi[ chi[:, j] >= predicate_value]
+
+# print(split_chi(a, 2, 7))
+print(type(int(a[0][0])))
+
+

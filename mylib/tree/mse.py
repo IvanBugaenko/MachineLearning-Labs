@@ -1,7 +1,7 @@
 import numpy as np
+from mylib.tree.mean_regression import mean_regression
 
 
 def mean_squared_error(chi: np.array) -> float:
     target = chi[:, -1]
-    mean = np.mean(target)
-    return np.sum((target - mean) ** 2) / len(target)
+    return np.sum((target - mean_regression(chi)) ** 2) / len(target)

@@ -1,6 +1,8 @@
 import numpy as np
 from mylib.tree.node import Node
 from mylib.tree.build_tree import build_tree
+from mylib.tree.popusk import popusk
+from mylib.tree.dependensies import functions
 
 
 class MyDecisionTree:
@@ -11,13 +13,13 @@ class MyDecisionTree:
 
 
     def fit(self, X: np.array, y: np.array) -> None:
-        self.tree: Node = build_tree(tree_type, np.c[X, y], self.max_depth)
+        self.tree: Node = build_tree(self.tree_type, np.c_[X, y], self.max_depth)
 
         return self
 
 
     def __tree_answer(self, x: np.array) -> object:
-        ...
+        return functions[self.tree_type]["predict"](popusk(self.tree, x))
 
 
     def predict(self, X: np.array) -> np.array:
