@@ -25,26 +25,7 @@ a = np.array([[1, 2, 3, 1],
               [4, 5, 6, 1],
               [7, 8, 9, 0]])
 
-# print(mode(a[:,-1]).mode[0])
+print(a[np.random.choice(np.arange(len(a)), 2)])
 
-# print(classes_prior_probability(a))
-
-d = {
-    1: 0.3,
-    3: 0.1,
-    2: 0.4,
-    4: 0.2
-}
-
-# print(sorted(d, key=lambda x: d.values()))
-# print(sorted(list(d.items()), key=lambda x: x[-1])[-1][0])
-
-def split_chi(chi: np.array, j: int, predicate_value: float):
-    return chi[ chi[:, j] < predicate_value], chi[ chi[:, j] >= predicate_value]
-
-# print(split_chi(a, 2, 7))
-# print(type(int(a[0][0])))
-
-print(a[1])
-
-
+a, b, c = (1, (2, 3))
+print(a, b, c)

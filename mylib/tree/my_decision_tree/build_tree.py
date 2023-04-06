@@ -1,6 +1,6 @@
 import numpy as np
 from mylib.tree.my_decision_tree.node import Node
-from mylib.tree.my_decision_tree.dependensies import functions
+from mylib.tree.my_decision_tree.dependencies import functions
 from mylib.tree.my_decision_tree.best_split import best_split
 
 
