@@ -1,5 +1,4 @@
 import numpy as np
-from math import exp
 
 
 class Dense:
@@ -25,15 +24,15 @@ class Dense:
         dE_db - градиент для смещения
         """
 
-        self.m: int = units
-        self.n: int = input_shape
+        self.m: int = units # 100%
+        self.n: int = input_shape # 100%
 
-        self.W: np.ndarray = None
-        self.b: np.ndarray = None
+        self.W: np.ndarray = None # 100%
+        self.b: np.ndarray = None # 100%
 
         self.x = None
         self.t: float = None
-        self.activation: str = activation
+        self.activation: str = activation # 100%
         self.h: float = None
 
         self.dE_dh: np.ndarray = None
@@ -49,16 +48,19 @@ class Dense:
                 "derivative": lambda t: 1 if t >= 0 else 0
             },
             "sigmoid": {
-                "function": lambda t: 1 / (1 + exp(-t)),
-                "derivative": lambda t: exp(t) / ((exp(t) + 1) ** 2)
+                "function": lambda t: 1 / (1 + np.exp(-t)),
+                "derivative": lambda t: np.exp(t) / ((np.exp(t) + 1) ** 2)
             },
             "tanh": {
-                "function": lambda t: (exp(t) - exp(-t)) / (exp(t) + exp(-t)),
-                "derivative": lambda t: 4 / ((exp(t) + exp(-t)) ** 2)
+                "function": lambda t: (np.exp(t) - np.exp(-t)) / (np.exp(t) + np.exp(-t)),
+                "derivative": lambda t: 4 / ((np.exp(t) + np.exp(-t)) ** 2)
             },
             "linear": {
                 "function": lambda t: t ,
                 "derivative": 1
+            },
+            "softmax": {
+                # TODO: Softmax
             }
         }
 
@@ -67,15 +69,17 @@ class Dense:
         ...
 
 
-    def forward_propagation(self) -> np.ndarray:
+    # TODO: Переделать для softmax декватного перемножения + запись промежуточных значений
+    def forward_propagation(self, x: np.ndarray) -> np.ndarray:
+        self.x = x
+        self.t = self.W @ x
         return np.array(
             list(map(
-                self.activation_functions[self.activation]["function"], self.W.dot(self.x.T)
+                self.activation_functions[self.activation]["function"], self.W @ x.T
             ))
         ) + self.b
 
-    
+
     def initialize_weights(self):
         self.W = np.zeros((self.m, self.n))
         self.b = np.zeros(self.m)
-

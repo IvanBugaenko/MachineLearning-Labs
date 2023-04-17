@@ -11,7 +11,8 @@
         ".vscode": true,
         "mylib/classification/__pycache__": true,
         "mylib/tree/__pycache__": true,
-        "mylib/tree/my_decision_tree/__pycache__": true
+        "mylib/tree/my_decision_tree/__pycache__": true,
+        "mylib/neural_network/__pycache__": true
     },
     "hide-files.files": [
         "mylib/__pycache__",
@@ -19,7 +20,8 @@
         ".vscode",
         "mylib/classification/__pycache__",
         "mylib/tree/__pycache__",
-        "mylib/tree/my_decision_tree/__pycache__"
+        "mylib/tree/my_decision_tree/__pycache__",
+        "mylib/neural_network/__pycache__"
     ],
     "cSpell.words": [
         "mylib"
