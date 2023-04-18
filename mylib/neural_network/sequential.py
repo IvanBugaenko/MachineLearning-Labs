@@ -10,8 +10,8 @@ class Sequential:
         self.layers = layers
         self.loss_functions = {
             "mse": {
-                "function": lambda X_true, X_pred: (X_pred - X_true) ** 2,
-                "derivative": lambda X_true, X_pred: 2 * (X_pred - X_true)
+                "function": lambda X_true, X_pred: 0.5 * (X_pred - X_true) ** 2,
+                "derivative": lambda X_true, X_pred: X_pred - X_true
             },
             "cross_entropy": {
                 "function": lambda X_true, X_pred: -np.sum(X_true * np.log(X_pred)),
@@ -37,8 +37,8 @@ class Sequential:
         ...
 
 
-    def __forward_propagation(self, x: np.ndarray) -> np.ndarray:
-        res = x
+    def __forward_propagation(self, X: np.ndarray) -> np.ndarray:
+        res = X
         for layer in self.layers:
             res = layer.forward_propagation(res)
 
@@ -62,15 +62,11 @@ class Sequential:
                         self.__forward_propagation(obj[:-1]), obj[-1]
                     )
                 
-                initial_dE_dh
+                
 
                 
 
 
 
     def predict(self, X: np.ndarray) -> np.ndarray:
-        answer = []
-        for x in X:
-            answer.append(self.__forward_propagation(x))
-        
-        return np.array(answer)
+        return self.__forward_propagation(X)

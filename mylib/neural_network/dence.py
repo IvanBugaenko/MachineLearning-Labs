@@ -1,4 +1,5 @@
 import numpy as np
+from mylib.neural_network.apply import apply
 
 
 class Dense:
@@ -16,7 +17,7 @@ class Dense:
         f - функция активации
         h = f(t)
 
-        dE_dh - исходное данное значение вектора-градиента по выходу слоя (вычисляется на основе предыдущего), размерность 
+        dE_dh - исходное данное значение вектора-градиента по выходу слоя (вычисляется на основе предыдущего)
         dE_dt - градиент по вычисляемым значениям
         dE_dx - градиент по входу слоя (для протаскивания вперед)
 
@@ -30,22 +31,22 @@ class Dense:
         self.W: np.ndarray = None # 100%
         self.b: np.ndarray = None # 100%
 
-        self.x = None
-        self.t: float = None
+        self.x = None # 100%
+        self.t: float = None # 100%
         self.activation: str = activation # 100%
-        self.h: float = None
+        self.h: float = None #! ???
 
-        self.dE_dh: np.ndarray = None
+        self.dE_dh: np.ndarray = None #! ???
         self.dE_dt: np.ndarray = None
-        self.dE_dx: np.ndarray = None
 
-        self.dE_dW: np.ndarray = None
-        self.dE_db: np.ndarray = None
+        self.dE_dx: np.ndarray = None #! ???
+        self.dE_dW: np.ndarray = None #! ???
+        self.dE_db: np.ndarray = None #! ???
 
         self.activation_functions = {
             "ReLU": {
-                "function": lambda t: max(0, t),
-                "derivative": lambda t: 1 if t >= 0 else 0
+                "function": lambda t: apply(t, lambda x: max(0, x)),
+                "derivative": lambda t: apply(t, lambda x: 1 if x >= 0 else 0)
             },
             "sigmoid": {
                 "function": lambda t: 1 / (1 + np.exp(-t)),
@@ -56,30 +57,35 @@ class Dense:
                 "derivative": lambda t: 4 / ((np.exp(t) + np.exp(-t)) ** 2)
             },
             "linear": {
-                "function": lambda t: t ,
+                "function": lambda t: np.exp(t) / np.sum(np.exp(t)),
                 "derivative": 1
             },
             "softmax": {
-                # TODO: Softmax
+                "function": lambda t: (1 / np.sum(np.exp(t))) * np.exp(t),
+                "derivative": lambda t, y: t - y
             }
         }
 
 
-    def backward_propagation(self):
+    def backward_propagation(self, dE_dh: np.ndarray):
         ...
 
 
-    # TODO: Переделать для softmax декватного перемножения + запись промежуточных значений
-    def forward_propagation(self, x: np.ndarray) -> np.ndarray:
-        self.x = x
-        self.t = self.W @ x
-        return np.array(
-            list(map(
-                self.activation_functions[self.activation]["function"], self.W @ x.T
-            ))
-        ) + self.b
+
+    def forward_propagation(self, X: np.ndarray) -> np.ndarray:
+
+        scalar_prod = X @ self.W.T
+
+        h = apply(scalar_prod, lambda t: (
+            self.activation_functions[self.activation]["function"](t + self.b)
+        ))
+
+        self.t = np.mean(scalar_prod, axis=0)
+        self.x = np.mean(X, axis=0)
+
+        return h
 
 
     def initialize_weights(self):
-        self.W = np.zeros((self.m, self.n))
-        self.b = np.zeros(self.m)
+        self.W = np.random.sample((self.m, self.n))
+        self.b = np.random.sample(self.m)
