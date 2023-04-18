@@ -21,7 +21,13 @@ class Sequential:
 
 
     def compile(self, optimizer: object, loss: str) -> None:
-
+        """
+        interface IOptimizer:
+        {
+            void Step();
+            void optimize(); // 
+        }
+        """
         self.optimizer = optimizer # TODO: Оптимизаторы
         self.loss = loss
 
@@ -61,12 +67,7 @@ class Sequential:
                     error += self.loss_functions[self.loss]["function"](
                         self.__forward_propagation(obj[:-1]), obj[-1]
                     )
-                
-                
-
-                
-
-
+            
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         return self.__forward_propagation(X)
