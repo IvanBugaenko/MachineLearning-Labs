@@ -1,5 +1,8 @@
 import numpy as np
 from mylib.neural_network.apply import apply
+from scipy.special import expm1
+from scipy.special import expit
+
 
 
 class Dense:
@@ -34,14 +37,7 @@ class Dense:
         self.x = None # 100%
         self.t: float = None # 100%
         self.activation: str = activation # 100%
-        self.h: float = None #! ???
 
-        self.dE_dh: np.ndarray = None #! ???
-        self.dE_dt: np.ndarray = None
-
-        self.dE_dx: np.ndarray = None #! ???
-        self.dE_dW: np.ndarray = None #! ???
-        self.dE_db: np.ndarray = None #! ???
 
         self.activation_functions = {
             "ReLU": {
@@ -49,27 +45,30 @@ class Dense:
                 "derivative": lambda t: apply(t, lambda x: 1 if x >= 0 else 0)
             },
             "sigmoid": {
-                "function": lambda t: 1 / (1 + np.exp(-t)),
-                "derivative": lambda t: np.exp(t) / ((np.exp(t) + 1) ** 2)
+                "function": lambda t: expit(t),
+                "derivative": lambda t: expit(t) * (1 - expit(t))
             },
             "tanh": {
-                "function": lambda t: (np.exp(t) - np.exp(-t)) / (np.exp(t) + np.exp(-t)),
-                "derivative": lambda t: 4 / ((np.exp(t) + np.exp(-t)) ** 2)
+                "function": lambda t: np.tanh(t),
+                "derivative": lambda t: 1 - (np.tanh(t)) ** 2
             },
             "linear": {
-                "function": lambda t: np.exp(t) / np.sum(np.exp(t)),
-                "derivative": 1
+                "function": lambda t: t,
+                "derivative": lambda t: 1
             },
             "softmax": {
-                "function": lambda t: (1 / np.sum(np.exp(t))) * np.exp(t),
-                "derivative": lambda t, y: t - y
+                "function": lambda t: apply(t, lambda x: (1 / np.sum(np.around(expm1(x) + 1, 5))) * np.around(expm1(x) + 1, 5)),
+                "derivative": lambda t: t
             }
         }
 
 
-    def backward_propagation(self, dE_dh: np.ndarray):
-        ...
-
+    def backward_propagation(self, dE_dh: np.ndarray) -> tuple:
+        dE_dt = dE_dh * self.activation_functions[self.activation]["derivative"](self.t)
+        dE_dW = np.outer(dE_dt, self.x)
+        dE_db = dE_dt
+        dE_dx = dE_dt @ self.W
+        return dE_dW, dE_db, dE_dx
 
 
     def forward_propagation(self, X: np.ndarray) -> np.ndarray:
