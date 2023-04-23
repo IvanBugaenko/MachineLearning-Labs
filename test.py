@@ -1,7 +1,7 @@
 import numpy as np
 import random
 from mylib.neural_network.apply import apply
-from scipy.special import expit
+from scipy.special import expit, exp2
 from scipy.linalg import tanhm
 
 
@@ -50,11 +50,12 @@ dE_dW2 = np.outer(dE_dt2, np.mean(h1, axis=0))
 dE_dx2 = dE_dt2 * np.mean(W2)
 # print(dE_dx2)
 
+f = lambda x: apply(x, lambda t: t / np.sum(x))
 
-a = np.array([1, 2])
 b = np.array([
-    [1, 2, 3, 4, 5, 6],
-    [2, 3, 4, 5, 6, 7]
+    [1.3587, 2.473764839, 3.349839, 4.34934, 5.3434, 6.23443],
+    [2.44738, 3.83848, 4.22838, 5.34343, 6.2382938, 7.2498247]
 ])
 
-print(tanhm(b))
+# print(apply(b, f))
+print(np.around(b))

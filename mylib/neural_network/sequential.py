@@ -1,8 +1,7 @@
 import numpy as np
 from typing import List
-from mylib.neural_network.dence import Dense
+from mylib.neural_network.dense import Dense
 from mylib.neural_network.cross_entropy_transform import cross_entropy_transform
-from mylib.neural_network.cross_entropy import cross_entropy
 
 
 class Sequential:
@@ -11,14 +10,12 @@ class Sequential:
         self.layers = layers
         self.loss_functions = {
             "mse": {
-                "function": lambda y_true, y_pred: (0.5 * (np.linalg.norm(y_true - y_pred, axis=1)) ** 2).reshape((len(y_pred), 1)),
                 "derivative": lambda y_true, y_pred: y_true - y_pred,
                 "transform": lambda *args: args[0]
             },
             "cross_entropy": {
-                "function": cross_entropy,
-                "derivative": lambda y_true, y_pred: -y_true / y_pred,       # TODO: Перепроверить производную
-                "transform": cross_entropy_transform        # принимает у и количество классов n
+                "derivative": lambda y_true, y_pred: y_true - y_pred,
+                "transform": cross_entropy_transform
             }
         }
 

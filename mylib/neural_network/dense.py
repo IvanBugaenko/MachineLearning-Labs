@@ -1,13 +1,14 @@
 import numpy as np
 from mylib.neural_network.apply import apply
 from scipy.special import expm1
-from scipy.special import expit
+from scipy.special import exp2, expit
 
 
 
 class Dense:
     
     def __init__(self, units: int, activation: str, input_shape: int = None):
+        
         """
         m - количество нейронов на выходе из слоя
         n - количество нейронов на вход в слой
@@ -28,16 +29,15 @@ class Dense:
         dE_db - градиент для смещения
         """
 
-        self.m: int = units # 100%
-        self.n: int = input_shape # 100%
+        self.m: int = units
+        self.n: int = input_shape 
 
-        self.W: np.ndarray = None # 100%
-        self.b: np.ndarray = None # 100%
+        self.W: np.ndarray = None 
+        self.b: np.ndarray = None 
 
-        self.x = None # 100%
-        self.t: float = None # 100%
-        self.activation: str = activation # 100%
-
+        self.x = None 
+        self.t: float = None 
+        self.activation: str = activation
 
         self.activation_functions = {
             "ReLU": {
@@ -57,8 +57,8 @@ class Dense:
                 "derivative": lambda t: 1
             },
             "softmax": {
-                "function": lambda t: apply(t, lambda x: (1 / np.sum(np.around(expm1(x) + 1, 5))) * np.around(expm1(x) + 1, 5)),
-                "derivative": lambda t: t
+                "function": lambda t: apply(t, lambda x: exp2(x) / np.sum(exp2(t))),
+                "derivative": None
             }
         }
 
@@ -75,9 +75,9 @@ class Dense:
 
         scalar_prod = X @ self.W.T
 
-        h = apply(scalar_prod, lambda t: (
-            self.activation_functions[self.activation]["function"](t + self.b)
-        ))
+        t = np.around(apply(scalar_prod, lambda x: x + self.b), 5)
+
+        h = np.around(apply(t, self.activation_functions[self.activation]["function"]), 5)
 
         self.t = np.mean(scalar_prod, axis=0)
         self.x = np.mean(X, axis=0)
@@ -86,5 +86,5 @@ class Dense:
 
 
     def initialize_weights(self):
-        self.W = np.random.sample((self.m, self.n))
-        self.b = np.random.sample(self.m)
+        self.W = np.around(np.random.sample((self.m, self.n)), 5)
+        self.b = np.around(np.random.sample(self.m), 5)
