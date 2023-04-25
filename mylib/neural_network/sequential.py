@@ -34,10 +34,10 @@ class Sequential:
 
 
     def fit(self, X_train: np.ndarray, y_train: np.ndarray, epochs: int = 1) -> None:
-        self.optimizer.compile(self.layers, self.loss_functions[self.loss])
+        self.optimizer.compile(self.loss_functions[self.loss])
 
         for _ in range(epochs):
-            self.layers = self.optimizer.optimize(X_train, y_train)
+            self.layers = self.optimizer.optimize(X_train, y_train, self.layers)
 
 
     def predict(self, X: np.ndarray) -> np.ndarray:

@@ -64,22 +64,23 @@ class Dense:
 
 
     def backward_propagation(self, dE_dh: np.ndarray) -> tuple:
-        dE_dt = dE_dh * self.activation_functions[self.activation]["derivative"](self.t)
-        dE_dW = np.outer(dE_dt, self.x)
+        dE_dt = np.around(np.around(dE_dh, 5) * np.around(self.activation_functions[self.activation]["derivative"](self.t), 5), 5)
+        dE_dW = np.around(np.outer(dE_dt, self.x), 5)
         dE_db = dE_dt
-        dE_dx = dE_dt @ self.W
+        dE_dx = np.around(np.around(dE_dt, 5) @ np.around(self.W, 5), 5)
+        print(dE_dx)
         return dE_dW, dE_db, dE_dx
 
 
     def forward_propagation(self, X: np.ndarray) -> np.ndarray:
 
-        scalar_prod = X @ self.W.T
+        scalar_prod = np.around(np.around(X, 5) @ np.around(self.W.T, 5), 5)
 
         t = np.around(apply(scalar_prod, lambda x: x + self.b), 5)
 
         h = np.around(apply(t, self.activation_functions[self.activation]["function"]), 5)
 
-        self.t = np.mean(scalar_prod, axis=0)
+        self.t = np.mean(t, axis=0)
         self.x = np.mean(X, axis=0)
 
         return h
