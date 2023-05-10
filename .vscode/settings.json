@@ -12,7 +12,11 @@
         "mylib/classification/__pycache__": true,
         "mylib/tree/__pycache__": true,
         "mylib/tree/my_decision_tree/__pycache__": true,
-        "mylib/neural_network/__pycache__": true
+        "mylib/neural_network/__pycache__": true,
+        "mylib/lab5/__pycache__": true,
+        "mylib/lab5/optimizers/__pycache__": true,
+        "mylib/utils/__pycache__": true,
+        "mylib/lab5/layers/__pycache__": true
     },
     "hide-files.files": [
         "mylib/__pycache__",
@@ -21,7 +25,11 @@
         "mylib/classification/__pycache__",
         "mylib/tree/__pycache__",
         "mylib/tree/my_decision_tree/__pycache__",
-        "mylib/neural_network/__pycache__"
+        "mylib/neural_network/__pycache__",
+        "mylib/lab5/__pycache__",
+        "mylib/lab5/optimizers/__pycache__",
+        "mylib/utils/__pycache__",
+        "mylib/lab5/layers/__pycache__"
     ],
     "cSpell.words": [
         "expit",

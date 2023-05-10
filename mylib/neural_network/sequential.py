@@ -19,9 +19,8 @@ class Sequential:
             }
         }
 
-
     def compile(self, optimizer: object, loss: str) -> None:
-        
+
         self.optimizer = optimizer
         self.loss = loss
 
@@ -32,13 +31,12 @@ class Sequential:
             self.layers[i].n = self.layers[i - 1].m
             self.layers[i].initialize_weights()
 
-
     def fit(self, X_train: np.ndarray, y_train: np.ndarray, epochs: int = 1) -> None:
         self.optimizer.compile(self.loss_functions[self.loss])
 
         for _ in range(epochs):
-            self.layers = self.optimizer.optimize(X_train, y_train, self.layers)
-
+            self.layers = self.optimizer.optimize(
+                X_train, y_train, self.layers)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         res = X
