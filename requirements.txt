@@ -7,7 +7,9 @@ numpy
 imbalanced-learn
 xgboost
 catboost
+sklearn_som 
 
 streamlit
 streamlit_autorefresh
 streamlit-option-menu
+

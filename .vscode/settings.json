@@ -16,7 +16,8 @@
         "mylib/lab5/__pycache__": true,
         "mylib/lab5/optimizers/__pycache__": true,
         "mylib/utils/__pycache__": true,
-        "mylib/lab5/layers/__pycache__": true
+        "mylib/lab5/layers/__pycache__": true,
+        "__pycache__": true
     },
     "hide-files.files": [
         "mylib/__pycache__",
@@ -29,7 +30,8 @@
         "mylib/lab5/__pycache__",
         "mylib/lab5/optimizers/__pycache__",
         "mylib/utils/__pycache__",
-        "mylib/lab5/layers/__pycache__"
+        "mylib/lab5/layers/__pycache__",
+        "__pycache__"
     ],
     "cSpell.words": [
         "expit",
