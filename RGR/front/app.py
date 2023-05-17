@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_autorefresh import st_autorefresh
 from streamlit_option_menu import option_menu
-from RGR.front.info import INFO
+from info import INFO
 
 st_autorefresh(interval=1000, key="dataframerefresh")
 
