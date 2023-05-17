@@ -26,13 +26,7 @@ y = np.array([
     ],
 
 ])
-# print(y.shape)
-# print(np.pad(y, ((0, 0), (0, 0), (1, 1), (1, 1)), mode='constant', constant_values=0))
-# print(np.zeros((4,)))
-# print(type((4,)))
-# print(list(map(lambda x: x + 1, [3])))
 
-print(y.reshape(-1, 1))
 
 
 def f(t): return apply(t, lambda x: np.exp(x) / np.sum(np.exp(x)))
@@ -40,10 +34,36 @@ def f(t): return apply(t, lambda x: np.exp(x) / np.sum(np.exp(x)))
 
 a = np.array(
     [
+        [1, 2, 4],
+        [0, 0, 1],
+        [1, 1, 1],
+        [3, 5, 7],
         [1, 2, 3],
-        [0, 0, 1]
+        [9, 0, 4],
+        [4, 5, 6],
+        [1, 2, 8]
     ]
 )
 
-b = np.array([[1, 1, 1, 1]])
-print(np.sum(f(a), axis=1))
+centroids = np.array(
+    [
+        [1, 2, 3],
+        [4, 5, 6]
+    ]
+)
+
+b = np.array([1, 1, 0, 0, 0, 1, 0, 1])
+
+chi = np.c_[a, b]
+
+print(chi[chi[:, -1] == 1])
+
+print(np.mean(chi[chi[:, -1] == 1], axis=0))
+
+for cluster in range(2):
+    print(np.mean(chi[chi[:, -1] == cluster], axis=0)[:-1])
+    # centroids[cluster] = np.mean([chi[:, -1] == cluster], axis=0)[:, :-1]
+
+# print(np.all(f(c, c1) < 11))
+
+# print(np.mean(a[a[:, -1] == 4], axis=0))
