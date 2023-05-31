@@ -17,7 +17,8 @@
         "mylib/lab5/optimizers/__pycache__": true,
         "mylib/utils/__pycache__": true,
         "mylib/lab5/layers/__pycache__": true,
-        "__pycache__": true
+        "__pycache__": true,
+        "RGR/front/__pycache__": true
     },
     "hide-files.files": [
         "mylib/__pycache__",
@@ -31,7 +32,8 @@
         "mylib/lab5/optimizers/__pycache__",
         "mylib/utils/__pycache__",
         "mylib/lab5/layers/__pycache__",
-        "__pycache__"
+        "__pycache__",
+        "RGR/front/__pycache__"
     ],
     "cSpell.words": [
         "expit",
