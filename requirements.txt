@@ -12,4 +12,5 @@ sklearn_som
 streamlit
 streamlit_autorefresh
 streamlit-option-menu
-
+plotly
+seaborn

@@ -52,6 +52,8 @@ val, vec = np.linalg.eig(np.cov(a.T))
 print(sorted(zip(val, vec)))
 # print(np.c_[[v.T for v in a]])
 
+print(bool(None))
+
 n = 2
 
 cov = np.cov(a.T)

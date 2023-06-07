@@ -20,7 +20,12 @@
         "__pycache__": true,
         "RGR/front/__pycache__": true,
         "mylib/feature_extraction/__pycache__": true,
-        "mylib/clusterization/__pycache__": true
+        "mylib/clusterization/__pycache__": true,
+        "RGR/front/functions/data_description/__pycache__": true,
+        "RGR/front/functions/data_description/test.md": true,
+        "RGR/front/functions/prediction/__pycache__": true,
+        "RGR/front/functions/prediction/utils/__pycache__": true,
+        "RGR/front/functions/visualization/__pycache__": true
     },
     "hide-files.files": [
         "mylib/__pycache__",
@@ -37,7 +42,12 @@
         "__pycache__",
         "RGR/front/__pycache__",
         "mylib/feature_extraction/__pycache__",
-        "mylib/clusterization/__pycache__"
+        "mylib/clusterization/__pycache__",
+        "RGR/front/functions/data_description/__pycache__",
+        "RGR/front/functions/data_description/test.md",
+        "RGR/front/functions/prediction/__pycache__",
+        "RGR/front/functions/prediction/utils/__pycache__",
+        "RGR/front/functions/visualization/__pycache__"
     ],
     "cSpell.words": [
         "expit",
