@@ -1,36 +1,32 @@
+import re
 import numpy as np
-import spacy as sp
-
-
-nlp = sp.load("en_core_web_sm")
+from collections import Counter
 
 
 class CountVectorizer:
-    def __init__(self, ngram_range: tuple[int, int], min_df=1, max_features=None) -> None:
-        self.ngram_range = ngram_range
-        self.min_df = min_df
-        self.max_features = max_features
+    def __init__(self, stop_words: list = []) -> None:
+        self.stop_words = stop_words
 
-    def fit(self, texts: np.ndarray) -> None:
-        lemma_texts = [self.__lemmatization(text) for text in texts]
-        print(lemma_texts)
-        # for text_num, text in enumerate(lemma_texts)
-        return lemma_texts
+    def fit(self, lemma_texts: list) -> None:
+        words = set()
+        for text in lemma_texts:
+            words.update(text.split())
+        self.words = sorted(words)
+        return self
 
+    def transform(self, lemma_texts: list[str]):
+        matrix = np.zeros((len(lemma_texts), len(self.words)))
+        for word_num, word in enumerate(self.words):
+            for doc_num, doc in enumerate(lemma_texts):
+                matrix[doc_num][word_num] += doc.split().count(word)
+        self.matrix = matrix
+        return matrix
 
-    def transform(self, ):
-        ...
+    def fit_transform(self, lemma_texts: list):
+        _ = self.fit(lemma_texts)
+        return self.transform(lemma_texts)
 
-    def fit_transform(self, X: np.ndarray):
-        _ = self.fit(X)
-        return ...
-
-    def __lemmatization(self, text: np.ndarray) -> np.ndarray:
-        return [token.lemma_ for token in nlp(text) if (token.lower_ not in nlp.Defaults.stop_words) and (not token.is_punct)]
-
-    def todense(self):
-        ...
-
-
-a = CountVectorizer((1,))
-print(a.fit(["Hello, Ivan. My name is Ivan!", "Yesterday I met a new friend, his name is Ivan", "Our meating was very nice, I like make new friends!"]))
+    @property
+    def vocabulary_(self):
+        word_sum = np.sum(self.matrix, axis=0, dtype=int)
+        return dict(zip(self.words, word_sum))
